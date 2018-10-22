@@ -34,7 +34,7 @@ console.log({argv, compare})
 //   }
 // });
 
-let command = process.argv[2];
+let command = argv._[0];
 console.log(`Command ${command}`)
 
 console.log(process.argv);
