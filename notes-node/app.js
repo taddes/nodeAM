@@ -1,5 +1,3 @@
-console.log('Starting app.js');
-
 const fs = require('fs');
 const os = require('os');
 
@@ -47,7 +45,11 @@ if (command === 'add') {
     console.log('Note title taken')
   }
 } else if (command === 'list') {
-  notes.getAll();
+  let allNotes = notes.getAll();
+  console.table(allNotes);
+  allNotes.forEach((note) => {
+    notes.logNote(note);
+  })
 } else if (command ==='read') {
   let note = notes.getNote(argv.title);
   if (note) {
