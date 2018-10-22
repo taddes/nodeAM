@@ -52,7 +52,16 @@ if (command === 'add') {
 } else if (command === 'list') {
   notes.getAll();
 } else if (command ==='read') {
-  notes.readNote(argv.title)
+  let note = notes.getNote(argv.title);
+  if (note) {
+    console.log('Note found');
+    console.log(`----`);
+    console.log(`Title: ${note.title}`);
+    console.log(`Body: ${note.body}`);
+  } else {
+    console.log('Note not found.');
+  }
+  console.log(note)
 } else if (command === 'remove') {
   let noteRemoved = notes.removeNote(argv.title);
   var message = noteRemoved ? `Note: ${title} successfully removed.`: `Unsuccessful note removal. Note not found`;
