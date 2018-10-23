@@ -19,18 +19,45 @@ console.log({filteredArray})
 
 const compare = process.argv;
 
-const argv = yargs.argv;
+const titleOptions = {
+    describe: 'Title of note',
+    demand: true,
+    alias: 't'
+};
+
+const bodyOptions = {
+  describe: 'Body of note',
+  demand: true,
+  alias: 'b'
+};
+
+const argv = yargs
+.command('add', 'Add a new note', {
+  title: {
+    describe: 'Title of note',
+    demand: true,
+    alias: 't'
+  },
+  body: {
+    describe: 'Body of note',
+    demand: true,
+    alias: 'b'
+  }
+})
+.command('list', 'list all notes')
+.command('read', 'Read a note', {
+  title: {
+    describe: 'Title of note',
+    demand: true,
+    alias: 't'
+  }
+})
+.command('remove', 'Remove a note', {
+  title: titleOptions
+})
+.help()
+.argv;
 console.log({argv, compare})
-
-
-// FS Module
-// fs.appendFile('greetings.txt', `Hello there ${user.username}! You are ${notes.age} `, function Error(err) {
-//   if (err) {
-//     console.log(`Unable to write to file: ${err}`);
-//   } else {
-//     console.log('Completed appending the file');
-//   }
-// });
 
 let command = argv._[0];
 console.log(`Command ${command}`)
@@ -60,7 +87,7 @@ if (command === 'add') {
   console.log(note)
 } else if (command === 'remove') {
   let noteRemoved = notes.removeNote(argv.title);
-  var message = noteRemoved ? `Note: ${title} successfully removed.`: `Unsuccessful note removal. Note not found`;
+  let message = noteRemoved ? `Note:  successfully removed.`: `Unsuccessful note removal. Note not found`;
   console.log(message);
  } else {
   console.log('Command not recognized')
