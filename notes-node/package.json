@@ -9,7 +9,7 @@
   "author": "Taddes Korris",
   "license": "ISC",
   "dependencies": {
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.15",
     "yargs": "^4.7.1"
   }
 }
